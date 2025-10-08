@@ -16,7 +16,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
             background: #f8fafc;
-            color: #553333ff;
+            color: #334155;
         }
 
         .container {
