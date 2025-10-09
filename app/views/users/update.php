@@ -3,82 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Student</title>
+  <title>Update</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 flex flex-col">
 
-  <!-- Top Navbar -->
-  <header class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 w-full z-10">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-700">Student Management</h1>
-      <nav class="flex gap-6">
-        <a href="<?=site_url('users/index')?>" class="hover:text-blue-600 font-medium">List</a>
-        <a href="<?=site_url('users/create')?>" class="hover:text-blue-600 font-medium">Add Student</a>
-        <a href="<?=site_url('login')?>" class="hover:text-blue-600 font-medium">Logout</a>
-      </nav>
+<body class="min-h-screen flex items-center justify-center font-sans bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-12">
+
+  <!-- Main Card -->
+  <div class="bg-white border border-amber-200 shadow-lg rounded-2xl px-8 py-10 w-full max-w-xl">
+
+    <!-- Header -->
+    <div class="flex flex-col items-center mb-8">
+      <div class="mx-auto w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-user-edit text-amber-600 text-2xl"></i>
+      </div>
+      <h2 class="text-3xl font-bold text-amber-600 text-center">Update Record</h2>
+      <p class="text-gray-600 mt-2 text-center text-sm">Edit your information below</p>
     </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex items-center justify-center px-4 pt-28 pb-10">
-    <div class="w-full max-w-md bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-8 border border-blue-100">
-      <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">Update Student</h2>
+    <!-- Form -->
+    <form action="<?=site_url('users/update/'.$user['id'])?>" method="POST" class="space-y-6">
+      
+      <!-- First Name -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
+        <input type="text" name="first_name" value="<?= html_escape($user['first_name'])?>" required 
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors" 
+               placeholder="Enter first name">
+      </div>
 
-      <form action="<?=site_url('users/update/'.$user['id'])?>" method="POST" class="space-y-5">
-        <div>
-          <label for="first_name" class="block text-gray-700 mb-1 font-medium">First Name</label>
-          <input 
-            type="text" 
-            name="first_name" 
-            id="first_name" 
-            value="<?= html_escape($user['first_name'])?>"
-            required
-            placeholder="Enter first name"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-          />
-        </div>
+      <!-- Last Name -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
+        <input type="text" name="last_name" value="<?= html_escape($user['last_name'])?>" required 
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors" 
+               placeholder="Enter last name">
+      </div>
 
-        <div>
-          <label for="last_name" class="block text-gray-700 mb-1 font-medium">Last Name</label>
-          <input 
-            type="text" 
-            name="last_name" 
-            id="last_name" 
-            value="<?= html_escape($user['last_name'])?>"
-            required
-            placeholder="Enter last name"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-          />
-        </div>
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+        <input type="email" name="email" value="<?= html_escape($user['email'])?>" required 
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors" 
+               placeholder="Enter email address">
+      </div>
 
-        <div>
-          <label for="email" class="block text-gray-700 mb-1 font-medium">Email</label>
-          <input 
-            type="email" 
-            name="email" 
-            id="email" 
-            value="<?= html_escape($user['email'])?>"
-            required
-            placeholder="Enter email address"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-          />
-        </div>
-
-        <button 
-          type="submit" 
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
-        >
+      <!-- Button -->
+      <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+        <span class="inline-flex items-center justify-center gap-2">
+          <i class="fas fa-check"></i>
           Update
-        </button>
-      </form>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="py-6 text-center text-sm text-gray-500">
-    © <?=date('Y')?> Student Management System. All rights reserved.
-  </footer>
-
+        </span>
+      </button>
+    </form>
+  </div>
 </body>
 </html>

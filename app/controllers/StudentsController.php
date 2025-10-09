@@ -34,7 +34,7 @@ class StudentsController extends Controller {
             $q = trim($this->io->get('q'));
         }
 
-        $records_per_page = 5; // number of users per page
+        $records_per_page = 10; // number of users per page
 
         // Call model's pagination method
         $all = $this->StudentsModel->page($q, $records_per_page, $page);
@@ -83,7 +83,7 @@ class StudentsController extends Controller {
     }
 
     function update($id){
-        if (!$this->session->userdata('user_id')) {
+        if (!$this->session->userdata('user_id') || $this->session->userdata('role') !== 'admin') {
             redirect('login');
         }
 

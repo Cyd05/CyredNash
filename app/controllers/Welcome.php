@@ -5,5 +5,10 @@ class Welcome extends Controller {
 	public function index() {
 		$this->call->view('welcome_page');
 	}
+	public function profile($fname, $lname) {
+		$data['lanme'] = $lname;
+		$data['fname'] = $fname;
+		$this->call->view('profile', $data);
+	}
 }
 ?>
